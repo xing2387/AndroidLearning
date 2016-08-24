@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.xing.androidlearning.ContactsHomeActivity">
+
+    <!--ch for contacts_home-->
+    <RelativeLayout
+        android:id="@+id/title_bar"
+        style="@style/EZTalksTitleBar">
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/EZTalksTitleText"
+            android:text="通讯录" />
+
+        <ImageView
+            android:id="@+id/ch_btn_add"
+            style="@style/TitleAdd" />
+    </RelativeLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/ch_vp_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title_bar"
+        android:layout_above="@+id/ch_bottom_menu_bar">
+
+    </android.support.v4.view.ViewPager>
+    <com.example.xing.androidlearning.view.BottomMenuBar
+        android:id="@+id/ch_bottom_menu_bar"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/shape_bottom_menu_bar"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_meeting_pressed" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_meeting" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_meeting_frame" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="会议"
+                android:textColor="#47C11D"
+                android:textSize="11.5sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="会议"
+                android:textColor="#9A9A9A"
+                android:textSize="11.5sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_msg_pressed" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_msg" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_msg_frame" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="消息"
+                android:textColor="#47C11D"
+                android:textSize="11.5sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="消息"
+                android:textColor="#9A9A9A"
+                android:textSize="11.5sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_contacts_pressed" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_contacts" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_contacts_frame" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="通讯录"
+                android:textColor="#47C11D"
+                android:textSize="11.5sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="通讯录"
+                android:textColor="#9A9A9A"
+                android:textSize="11.5sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_me_pressed" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_me" />
+
+            <ImageView
+                style="@style/bottom_bar_image_style"
+                android:src="@drawable/btn_me_frame" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="我"
+                android:textColor="#47C11D"
+                android:textSize="11.5sp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="我"
+                android:textColor="#9A9A9A"
+                android:textSize="11.5sp" />
+        </FrameLayout>
+    </com.example.xing.androidlearning.view.BottomMenuBar>
+</RelativeLayout>

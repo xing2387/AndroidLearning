@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TrianglePageViewIndicator">
+
+    <com.example.xing.androidlearning.view.TriangleIndicator
+        android:id="@+id/tpvi_triangleindicator"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:visible_tab_count="4"
+        app:tab_title_text_color="#CCCCCC"
+        app:tab_title_text_color_highlight="#EEEEEE"
+        app:tab_title_text_size="16sp"
+        android:background="@color/darkgray">
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab1"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab2"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab3"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab4"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab5"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab6"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab7"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab8"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="zTab9"
+            android:textColor="#CCCCCC"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </com.example.xing.androidlearning.view.TriangleIndicator>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/trianglepage_vp_fragcontain"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FFFFFF">
+
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

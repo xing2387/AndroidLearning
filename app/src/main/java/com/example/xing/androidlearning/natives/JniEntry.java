@@ -1,0 +1,1 @@
+package com.example.xing.androidlearning.natives;public class JniEntry {    static {        System.loadLibrary("native");    }    public native String getString();}class AnotherClass{}

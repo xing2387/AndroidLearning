@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CCEEEE"
+    android:orientation="vertical"
+    tools:context="com.example.xing.androidlearning.FlowLayoutActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="child gravity = "
+        android:textSize="16dp" />
+
+    <com.example.xing.androidlearning.view.ScrollableFlowLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#AAAAAA"
+        android:scrollbars="vertical"
+        app:child_gravity="center"
+        android:layout_below="@+id/textView2"
+        android:layout_above="@+id/fab_add1">
+    </com.example.xing.androidlearning.view.ScrollableFlowLayout>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_margin="8dp"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@android:color/white" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:layout_toEndOf="@+id/fab_add1"
+        android:layout_toRightOf="@+id/fab_add1"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@android:color/white" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:layout_toEndOf="@+id/fab_add2"
+        android:layout_toRightOf="@+id/fab_add2"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@android:color/white" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_add4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:layout_toEndOf="@+id/fab_add3"
+        android:layout_toRightOf="@+id/fab_add3"
+        android:src="@android:drawable/ic_input_add"
+        android:tint="@android:color/white" />
+
+    <Spinner
+        android:id="@+id/sp_childgravity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/child_gravity"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/fab_add4"
+        android:layout_toEndOf="@+id/fab_add4"
+        android:layout_above="@+id/sp_childgravity2"/>
+    <Spinner
+        android:id="@+id/sp_childgravity2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:entries="@array/child_gravity"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_toRightOf="@+id/fab_add4"
+        android:layout_toEndOf="@+id/fab_add4"/>
+</RelativeLayout>

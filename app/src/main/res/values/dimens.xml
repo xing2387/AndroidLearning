@@ -1,0 +1,13 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+
+    <dimen name="EZTalksXLTextSize">20sp</dimen>
+    <dimen name="EZTalksLTextSize">18sp</dimen>
+    <dimen name="EZTalksMTextSize">16sp</dimen>
+    <dimen name="EZTalksSTextSize">14sp</dimen>
+    <dimen name="EZTalksXSTextSize">12sp</dimen>
+
+</resources>
