@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xing.androidlearning.ContactsHomeActivity">
+    tools:context=".Activity.ContactsHomeActivity">
 
     <!--ch for contacts_home-->
     <RelativeLayout
@@ -28,7 +28,7 @@
         android:layout_above="@+id/ch_bottom_menu_bar">
 
     </android.support.v4.view.ViewPager>
-    <com.example.xing.androidlearning.view.BottomMenuBar
+    <com.example.xing.androidlearning.customview.BottomMenuBar
         android:id="@+id/ch_bottom_menu_bar"
         android:layout_width="match_parent"
         android:layout_height="55dp"
@@ -168,5 +168,5 @@
                 android:textColor="#9A9A9A"
                 android:textSize="11.5sp" />
         </FrameLayout>
-    </com.example.xing.androidlearning.view.BottomMenuBar>
+    </com.example.xing.androidlearning.customview.BottomMenuBar>
 </RelativeLayout>

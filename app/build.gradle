@@ -1,9 +1,8 @@
 apply plugin: 'com.android.model.application'
-
 model {
     android {
         compileSdkVersion 23
-        buildToolsVersion '24.0.0'
+        buildToolsVersion '23.0.3'
 
         defaultConfig {
             applicationId "com.example.xing.androidlearning"
@@ -27,52 +26,24 @@ model {
         }
         ndk {
             moduleName "native"
-        }
-        productFlavors {
-            create("arm") {
-                ndk.abiFilters.add("armeabi")
-            }
-            create("arm7") {
-                ndk.abiFilters.add("armeabi-v7a")
-            }
-            create("arm8") {
-                ndk.abiFilters.add("arm64-v8a")
-            }
-            create("x86") {
-                ndk.abiFilters.add("x86")
-            }
-            create("x86-64") {
-                ndk.abiFilters.add("x86_64")
-            }
-            create("mips") {
-                ndk.abiFilters.add("mips")
-            }
-            create("mips-64") {
-                ndk.abiFilters.add("mips64")
-            }
-            // To include all cpu architectures, leaves abiFilters empty
-            create("all")
+            CFlags.add("-std=c11")
+            abiFilters.addAll("armeabi", "x86", "all")
+            ldLibs.addAll(["log", "jnigraphics"])
+            stl "stlport_static"
         }
     }
 }
 //
 dependencies {
+    compile project(':openCVLibrary310')
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    //    compile 'com.afollestad:material-dialogs:0.7.6.0'
-
-
     compile 'com.android.support:design:23.4.0'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:recyclerview-v7:23.4.0'
-    compile 'com.github.bumptech.glide:glide:3.6.0'
     compile 'de.hdodenhof:circleimageview:1.3.0'
-    compile 'com.loopj.android:android-async-http:1.4.7'
     compile 'com.android.support:support-v4:23.4.0'
     compile 'com.android.support:cardview-v7:23.4.0'
     compile 'com.belerweb:pinyin4j:2.5.1'
-    compile 'com.google.android.gms:play-services-plus:9.2.0'
-    compile 'com.google.android.gms:play-services-auth:9.2.0'
-    compile 'com.google.apis:google-api-services-people:v1-rev4-1.22.0'
-//    compile 'com.google.android.gms:play-services:9.2.0'
+    compile 'com.squareup.picasso:picasso:2.4.0'
 }
 

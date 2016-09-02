@@ -1,1 +1,1 @@
-package com.example.xing.androidlearning.natives;public class JniEntry {    static {        System.loadLibrary("native");    }    public native String getString();}class AnotherClass{}
+package com.example.xing.androidlearning.natives;import android.graphics.Bitmap;public class JniEntry {    static {        System.loadLibrary("native");    }    public native String getString();    public static native void processBitmap(Bitmap bitmap);    public static native void bitmapFilter(Bitmap bitmap, int filterType);}

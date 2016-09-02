@@ -3,7 +3,6 @@
     package="com.example.xing.androidlearning">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,32 +12,30 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".LoginAndSignUpActivity"
+            android:name=".Activity.LoginAndSignUpActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".TasksActivity"
-            android:label="@string/title_activity_tasks"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".view.TestActivity"
+            android:name=".customview.TestActivity"
             android:label="@string/app_name" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TrianglePageViewIndicator" />
+        <activity android:name=".Activity.TrianglePageViewIndicator" />
         <activity
-            android:name=".FlowLayoutActivity"
+            android:name=".Activity.FlowLayoutActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".ContactsHomeActivity"
+            android:name=".Activity.ContactsHomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".googleplus.GPlusLoginActivit"></activity>
+        <activity android:name=".outlook.Connect2OutlookActivity" />
+        <activity android:name=".Activity.ImagePickActivity" />
+        <activity android:name=".Activity.ImageFilterActivity"></activity>
     </application>
 
 </manifest>

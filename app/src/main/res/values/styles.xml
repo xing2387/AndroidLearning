@@ -47,4 +47,12 @@
         <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_gravity">top</item>
     </style>
+
+    <style name="LoadingDialog" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/bg_halftrans_dialog</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:backgroundDimAmount">0.4</item>
+    </style>
 </resources>

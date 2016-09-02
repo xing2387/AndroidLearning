@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.xing.androidlearning.ContactsListFragment">
+    tools:context=".fragment.ContactsListFragment">
 
     <ListView
         android:id="@+id/ch_lv_contacts_list"
@@ -16,7 +16,7 @@
         android:layout_toLeftOf="@+id/ch_sidescollbar"
         android:layout_toStartOf="@+id/ch_sidescollbar" />
 
-    <com.example.xing.androidlearning.view.SideScollBar
+    <com.example.xing.androidlearning.customview.SideScollBar
         android:id="@+id/ch_sidescollbar"
         android:layout_width="20dp"
         android:layout_height="match_parent"
