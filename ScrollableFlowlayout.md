@@ -4,7 +4,7 @@
 	3、根据需要设置子View的Gravity
 	4、如果需要，可以使用LayoutTransition设置子View添加删除时的动画效果
 ![see com.example.xing.androidlearning.Activity.FlowLayoutActivity](http://img.blog.csdn.net/20160824161329490)
-
+see com.example.xing.androidlearning.Activity.FlowLayoutActivity
 
 
 #**实现自动换行以及可自定义Gravity**
