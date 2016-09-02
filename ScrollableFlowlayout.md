@@ -3,7 +3,7 @@
 	2、子View的高度超过layout的大小时可以滑动
 	3、根据需要设置子View的Gravity
 	4、如果需要，可以使用LayoutTransition设置子View添加删除时的动画效果
-![这里写图片描述](http://img.blog.csdn.net/20160824161329490)
+![see com.example.xing.androidlearning.Activity.FlowLayoutActivity](http://img.blog.csdn.net/20160824161329490)
 
 
 
