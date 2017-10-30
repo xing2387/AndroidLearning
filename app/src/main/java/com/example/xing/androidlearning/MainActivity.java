@@ -20,7 +20,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.xing.androidlearning.fakewechat.ContactsHomeActivity;
 import com.example.xing.androidlearning.flowlayout.FlowLayoutActivity;
-import com.example.xing.androidlearning.googleplus.GPlusLoginActivit;
 import com.example.xing.androidlearning.loginsignup.LoginAndSignUpActivity;
 import com.example.xing.androidlearning.pageviewindicator.PageViewIndicatorActivity;
 import com.example.xing.androidlearning.ruleView.RuleViewActivity;
@@ -40,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ListView lvMenu = (ListView) findViewById(R.id.main_lv_menu);
         List<String> menuList = Arrays.asList("Login&SignUp", "TriangleIndicator",
-                "FlowLayout", "Contacts", "GPlusLoginActivit", "ruleView");
+                "FlowLayout", "Contacts", "ruleView");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuList);
         if (lvMenu != null) {
             lvMenu.setAdapter(adapter);
@@ -106,9 +105,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 startActivity(new Intent(this, ContactsHomeActivity.class));
                 break;
             case 4:
-                startActivity(new Intent(this, GPlusLoginActivit.class));
-                break;
-            case 5:
                 startActivity(new Intent(this, RuleViewActivity.class));
                 break;
             default:
