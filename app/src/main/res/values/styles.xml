@@ -1,9 +1,10 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
     </style>
+
     <style name="base_color">
         <item name="android:background">#50d2c2</item>
     </style>
@@ -46,13 +47,5 @@
         <item name="android:layout_marginTop">3dp</item>
         <item name="android:scaleType">centerCrop</item>
         <item name="android:layout_gravity">top</item>
-    </style>
-
-    <style name="LoadingDialog" parent="Theme.AppCompat.Dialog">
-        <item name="android:windowNoTitle">true</item>
-        <item name="android:windowBackground">@drawable/bg_halftrans_dialog</item>
-        <item name="android:backgroundDimEnabled">true</item>
-        <item name="android:windowIsTranslucent">true</item>
-        <item name="android:backgroundDimAmount">0.4</item>
     </style>
 </resources>

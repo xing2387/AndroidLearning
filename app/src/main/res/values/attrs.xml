@@ -18,8 +18,42 @@
         <attr name="maskColor" format="color" />
         <attr name="indicatorColor" format="color" />
     </declare-styleable>
+
+    <declare-styleable name="RuleView">
+        <attr name="minScale" format="float" />
+        <attr name="maxScale" format="float" />
+        <attr name="gapWidth" format="dimension" />                 <!-- 刻度间隔的距离 -->
+        <attr name="scaleTextMarginTop" format="dimension" />       <!-- 显示在下面的刻度文本距离刻度线多远，可以为负 -->
+        <attr name="pointerTextMarginBottom" format="dimension" />  <!-- 显示在上面的读数距离刻度线多远，可以为负 -->
+        <attr name="scaleColor" format="color" />
+        <attr name="pointerColor" format="color" />
+        <attr name="scaleInterval" format="float" />                <!-- 每个大的刻度，刻度值的差 -->
+        <attr name="subScaleDivision" format="integer" />           <!-- 每个大刻度分几分，常见的米尺大刻度值相差1cm，精确度1mm，就是每1cm分10份 -->
+        <attr name="hasMidScale" format="boolean" />                <!-- default false 是否画中间的刻度，是否像常见的米尺那样5mm,15mm处画的线不一样 -->
+        <attr name="scale" format="float" />                        <!-- 读数预设值 -->
+
+        <attr name="unit" format="string" />                        <!-- 显示的单位，只在读数上显示 -->
+        <attr name="scaleTextSize" format="dimension" />            <!-- scaleText: 下面显示的刻度文本 -->
+        <attr name="scaleTextColor" format="color" />
+        <attr name="pointerTextSize" format="dimension" />          <!-- pointerText: 上面显示的读数 -->
+        <attr name="pointerTextColor" format="color" />
+        <attr name="showPointerText" format="boolean" />            <!-- default true -->
+        <attr name="showPointer" format="boolean" />                <!-- default true -->
+        <attr name="showScaleText" format="boolean" />              <!-- default true -->
+
+        <attr name="largeScaleHeight" format="dimension" />         <!-- 刻度线有大中小三种长度和宽度 -->
+        <attr name="midScaleHeight" format="dimension" />
+        <attr name="smallScaleHeight" format="dimension" />
+        <attr name="largeScaleWidth" format="dimension" />
+        <attr name="midScaleWidth" format="dimension" />
+        <attr name="smallScaleWidth" format="dimension" />
+
+        <attr name="precision" format="integer" />                  <!--小数点后多少位 -->
+        <attr name="scaleTextPrecision" format="integer" />         <!-- 下面显示的刻度精确到小数点几位-->
+    </declare-styleable>
+
+
     <declare-styleable name="flowlayout">
-        <!--<attr name="child_gravity" format="integer"/>-->
         <attr name="child_gravity">
             <enum name="center" value="17" />
             <enum name="center_vertical" value="16" />
@@ -29,9 +63,5 @@
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
         </attr>
-    </declare-styleable>
-    <declare-styleable name="StrokeTextView">
-        <attr name="outerColor" format="color|reference" />
-        <attr name="innnerColor" format="color|reference" />
     </declare-styleable>
 </resources>

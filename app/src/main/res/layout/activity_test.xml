@@ -5,12 +5,12 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="com.example.xing.androidlearning.customview.TestActivity">
+    tools:context="com.example.xing.androidlearning.view.TestActivity">
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     
-    <com.example.xing.androidlearning.customview.TestView
+    <com.example.xing.androidlearning.view.TestView
         android:layout_width="40dp"
         android:layout_height="40dp" />
 

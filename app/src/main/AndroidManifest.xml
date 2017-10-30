@@ -3,6 +3,7 @@
     package="com.example.xing.androidlearning">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!-- To access Google+ APIs: -->
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,30 +13,33 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Activity.LoginAndSignUpActivity"
+            android:name=".loginsignup.LoginAndSignUpActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
-            android:name=".customview.TestActivity"
+            android:name=".view.TestActivity"
             android:label="@string/app_name" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activity.TrianglePageViewIndicator" />
+        <activity android:name=".pageviewindicator.PageViewIndicatorActivity" />
+        <activity android:name=".flowlayout.FlowLayoutActivity" />
         <activity
-            android:name=".Activity.FlowLayoutActivity"
+            android:name=".fakewechat.ContactsHomeActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity
-            android:name=".Activity.ContactsHomeActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".outlook.Connect2OutlookActivity" />
-        <activity android:name=".Activity.ImagePickActivity" />
-        <activity android:name=".Activity.ImageFilterActivity"></activity>
+        <activity android:name=".googleplus.GPlusLoginActivit" />
+
+        <activity android:name=".ruleView.RuleViewActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
     </application>
 
 </manifest>

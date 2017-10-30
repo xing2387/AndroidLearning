@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CCEEEE"
     android:orientation="vertical"
-    tools:context=".Activity.FlowLayoutActivity">
+    tools:context=".flowlayout.FlowLayoutActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -15,7 +15,7 @@
         android:text="child gravity = "
         android:textSize="16dp" />
 
-    <com.example.xing.androidlearning.customview.ScrollableFlowLayout
+    <com.example.xing.androidlearning.flowlayout.ScrollableFlowLayout
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,7 +24,7 @@
         app:child_gravity="center"
         android:layout_below="@+id/textView2"
         android:layout_above="@+id/fab_add1">
-    </com.example.xing.androidlearning.customview.ScrollableFlowLayout>
+    </com.example.xing.androidlearning.flowlayout.ScrollableFlowLayout>
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_add1"
         android:layout_width="wrap_content"

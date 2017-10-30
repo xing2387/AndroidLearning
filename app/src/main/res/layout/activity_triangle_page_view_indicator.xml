@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Activity.TrianglePageViewIndicator">
+    tools:context=".pageviewindicator.PageViewIndicatorActivity">
 
-    <com.example.xing.androidlearning.customview.TriangleIndicator
+    <com.example.xing.androidlearning.view.TriangleIndicator
         android:id="@+id/tpvi_triangleindicator"
         android:layout_width="match_parent"
         android:layout_height="50dp"
@@ -97,7 +97,7 @@
             android:gravity="center"
             android:textSize="20sp"
             android:textStyle="bold" />
-    </com.example.xing.androidlearning.customview.TriangleIndicator>
+    </com.example.xing.androidlearning.view.TriangleIndicator>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/trianglepage_vp_fragcontain"
