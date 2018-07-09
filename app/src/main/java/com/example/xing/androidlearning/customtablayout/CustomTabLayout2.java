@@ -15,6 +15,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
@@ -52,6 +53,7 @@ public class CustomTabLayout2 extends FrameLayout {
     private LinearLayout mTabContainerLayout;
     private int selectedPosition = -1;
     private int mIndicatorImgHeight = 0;
+    private int mTranslationX = 0;
     private ArrayList<Tab> mTabs = new ArrayList<>();
     private ArrayList<Integer> mIndicatorLeft = new ArrayList<>();
 
@@ -60,7 +62,7 @@ public class CustomTabLayout2 extends FrameLayout {
     }
 
     public CustomTabLayout2(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public CustomTabLayout2(@NonNull Context context, @Nullable AttributeSet attrs,
@@ -98,6 +100,23 @@ public class CustomTabLayout2 extends FrameLayout {
         addIndicator();
         this.mViewPager = viewPager;
         this.mPagerAdapter = viewPager.getAdapter();
+        this.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                scoll(position, positionOffset);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                selectTab(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         if (mPagerAdapter != null) {
             final int adapterCount = mPagerAdapter.getCount();
             for (int i = 0; i < adapterCount; i++) {
@@ -140,15 +159,23 @@ public class CustomTabLayout2 extends FrameLayout {
         }
     }
 
+    private int getTabWidth(int index) {
+        if (index < 0 || index + 1 >= mIndicatorLeft.size()) {
+            return -1;
+        }
+        return mIndicatorLeft.get(index + 1) - mIndicatorLeft.get(index);
+    }
+
     private int indicatorTop;
+    private int currLeftIndex;
+    private int lineLength;
 
     private void drawLineIndicator(Canvas canvas) {
         if (selectedPosition >= 0 && selectedPosition < mIndicatorLeft.size() - 1) {
-            int lineLength = mIndicatorWidth;
             if (lineLength < 0) {
-                lineLength = mIndicatorLeft.get(selectedPosition + 1) - mIndicatorLeft.get(selectedPosition);
+                lineLength = getTabWidth(currLeftIndex);
             }
-            int indicatorLeft = mIndicatorLeft.get(selectedPosition);
+            int indicatorLeft = mIndicatorLeft.get(selectedPosition) + mTranslationX;
             canvas.save();
             canvas.translate(indicatorLeft, indicatorTop + mIndicatorStrokeWidth / 2);
             canvas.drawLine(0, 0, lineLength, 0, mIndicatorPaint);
@@ -157,8 +184,8 @@ public class CustomTabLayout2 extends FrameLayout {
     }
 
     private void drawImgIndicator(Canvas canvas) {
-        if (selectedPosition > 0 && selectedPosition < mIndicatorLeft.size() - 1) {
-            int indicatorLeft = mIndicatorLeft.get(selectedPosition);
+        if (selectedPosition >= 0 && selectedPosition < mIndicatorLeft.size() - 1) {
+            int indicatorLeft = mIndicatorLeft.get(selectedPosition) + mTranslationX;
             canvas.save();
             canvas.translate(indicatorLeft, indicatorTop);
             canvas.drawBitmap(mIndicatorBitmap, 0, 0, mIndicatorPaint);
@@ -270,6 +297,32 @@ public class CustomTabLayout2 extends FrameLayout {
             indicatorTop = h - mIndicatorStrokeWidth;
         }
         calcIndicatorLeft();
+    }
+
+
+    /**
+     * 当屏幕滑动时调用,移动三角形指示器和标签组
+     *
+     * @param position       当前激活标签的索引,从0开始
+     * @param positionOffset 当前页面滑动距离相对页面宽度的百分比
+     */
+    public void scoll(int position, float positionOffset) {
+        Log.d("ljx", "scoll: " + positionOffset + ", " + position);
+
+        if (positionOffset > selectedPosition) {        //手指向左滑动
+            position = position - 1;
+            if (!isImgIndicator()) {
+                lineLength =
+            }
+        }
+        if (position < 0 || position >= mIndicatorLeft.size()) {
+            return;
+        }
+        int lastLeft = position == 0 ? 0 : mIndicatorLeft.get(position - 1);
+        int currTabWidth = mIndicatorLeft.get(position) - lastLeft;
+        mTranslationX = (int) (positionOffset * currTabWidth);
+
+        invalidate();
     }
 
     @Override
