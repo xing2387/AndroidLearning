@@ -14,9 +14,9 @@
 
     <declare-styleable name="bottommenubar">
         <attr name="textSize" format="integer" />
-        <attr name="textColor" format="color" />
+        <attr name="textColor1" format="color" />
         <attr name="maskColor" format="color" />
-        <attr name="indicatorColor" format="color" />
+        <attr name="indicatorColor2" format="color" />
     </declare-styleable>
 
     <declare-styleable name="RuleView">
@@ -63,5 +63,17 @@
             <enum name="top" value="48" />
             <enum name="bottom" value="80" />
         </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CustomTabLayout2">
+        <attr name="indicatorColor" format="color" />
+        <attr name="indicatorWidth" format="dimension" />
+        <attr name="indicatorStrokeWidth" format="dimension" />
+        <attr name="indicatorImg" format="reference" />
+        <attr name="tabTextColor" format="color" />
+        <attr name="selectTextColor" format="color" />
+        <attr name="tabTextSize" format="dimension" />
+        <attr name="tabPadding" format="dimension" />
+        <attr name="boldSelected" format="boolean" />
     </declare-styleable>
 </resources>

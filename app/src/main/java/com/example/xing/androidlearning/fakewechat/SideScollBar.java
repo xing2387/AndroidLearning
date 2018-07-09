@@ -67,7 +67,7 @@ public class SideScollBar extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.bottommenubar);
         mTextSize = a.getInt(R.styleable.bottommenubar_textSize, 12);
         mMaskColor = a.getColor(R.styleable.bottommenubar_maskColor, 0xAAC0C0C0);
-        mTextColor = a.getColor(R.styleable.bottommenubar_textColor, 0xFF169BD5);
+        mTextColor = a.getColor(R.styleable.bottommenubar_textColor1, 0xFF169BD5);
         a.recycle();
         init();
     }

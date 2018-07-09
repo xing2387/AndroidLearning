@@ -18,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.xing.androidlearning.customtablayout.CustomTabLayoutActivity;
 import com.example.xing.androidlearning.fakewechat.ContactsHomeActivity;
 import com.example.xing.androidlearning.flowlayout.FlowLayoutActivity;
 import com.example.xing.androidlearning.loginsignup.LoginAndSignUpActivity;
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ListView lvMenu = (ListView) findViewById(R.id.main_lv_menu);
         List<String> menuList = Arrays.asList("Login&SignUp", "TriangleIndicator",
-                "FlowLayout", "Contacts", "ruleView");
+                "FlowLayout", "Contacts", "ruleView", "CustomTabLayout");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuList);
         if (lvMenu != null) {
             lvMenu.setAdapter(adapter);
@@ -107,6 +108,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case 4:
                 startActivity(new Intent(this, RuleViewActivity.class));
                 break;
+            case 5:
+                startActivity(new Intent(this, CustomTabLayoutActivity.class));
             default:
                 break;
         }
