@@ -16,46 +16,68 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.xing.androidlearning.R;
-import com.example.xing.androidlearning.util.CommomUtil;
+import com.example.xing.androidlearning.util.DisplayUtil;
 
 import java.util.ArrayList;
 
-public class CustomTabLayout2 extends FrameLayout {
+public class CustomTabLayout2 extends HorizontalScrollView {
+    private static final String TAG = "CustomTabLayout2";
 
     private float mTextSize = 17;   //sp
-    private int mTabPadding = (int) CommomUtil.getRawSize(TypedValue.COMPLEX_UNIT_SP, 18);   //px
+    private int mTabPadding = DisplayUtil.dip2px(getContext(), 18);   //px
     @ColorInt
     private int mIndicatorColor = Color.WHITE;
     private int mIndicatorResId = -1;
-    //    private View mIndicatorImg;
     private boolean mIsBoldText = true;
     @ColorInt
     private int mSelectedTextColor = Color.parseColor("#000000");
     @ColorInt
     private int mNormalTextColor = Color.parseColor("#99989ABF");
     private int mIndicatorWidth = -1;      //px
-    private int mIndicatorStrokeWidth = (int) CommomUtil.getRawSize(TypedValue.COMPLEX_UNIT_DIP, 3);      //px
+    private int mIndicatorStrokeWidth = DisplayUtil.dip2px(getContext(), 3);      //px
+    private int mIndicatorPadding = 0;
+    private int mRedDotBgResId = -1;
+    private int mSmallRedDotBgResId = -1;
+    private int mRedDotGravity = Gravity.TOP | Gravity.END;
+    private int mRedDotMarginTop = DisplayUtil.dip2px(getContext(), 9);                       //px
+    private int mRedDotMarginBottom = 0;
+    private int mRedDotMarginRight = DisplayUtil.dip2px(getContext(), 9);                       //px
+    private int mRedDotMarginLeft = 0;
 
     private Paint mIndicatorPaint;
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
     private Bitmap mIndicatorBitmap;
 
+    //    private HorizontalScrollView mScrollWrapper;
     private LinearLayout mTabContainerLayout;
     private int selectedPosition = -1;
     private int mIndicatorImgHeight = 0;
     private int mTranslationX = 0;
     private ArrayList<Tab> mTabs = new ArrayList<>();
-    private ArrayList<Integer> mIndicatorLeft = new ArrayList<>();
+    private ArrayList<Integer> mIndicatorLeftList = new ArrayList<>();
+    private ArrayList<Integer> mIndicatorWidthList = new ArrayList<>();
+
+    private OnClickListener mOnTabClickListener = new OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if (v.getTag() instanceof Integer) {
+                int index = (int) v.getTag();
+                if (mViewPager != null) {
+                    mViewPager.setCurrentItem(index);
+                }
+            }
+        }
+    };
 
     public CustomTabLayout2(Context context) {
         this(context, null);
@@ -79,6 +101,14 @@ public class CustomTabLayout2 extends FrameLayout {
         mSelectedTextColor = typedArray.getColor(R.styleable.CustomTabLayout2_selectTextColor, mSelectedTextColor);
         mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorWidth, mIndicatorWidth);
         mIndicatorStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorStrokeWidth, mIndicatorStrokeWidth);
+        mIndicatorPadding = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorPadding, mIndicatorPadding);
+        mRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout2_redDotBgResId, mRedDotBgResId);
+        mSmallRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout2_smallDotBgResId, mSmallRedDotBgResId);
+        mRedDotMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginLeft, mRedDotMarginLeft);
+        mRedDotMarginTop = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginTop, mRedDotMarginTop);
+        mRedDotMarginRight = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginRight, mRedDotMarginRight);
+        mRedDotMarginBottom = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginBottom, mRedDotMarginBottom);
+        mRedDotGravity = typedArray.getInteger(R.styleable.CustomTabLayout2_redDotGravity, mRedDotGravity);
         typedArray.recycle();
 
     }
@@ -86,14 +116,24 @@ public class CustomTabLayout2 extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
+        setHorizontalScrollBarEnabled(false);
+    }
+
+    private void addTabContainerLayout() {
+        if (mTabContainerLayout != null) {
+            return;
+        }
+
+        mTabContainerLayout = new LinearLayout(getContext());
+        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        mTabContainerLayout.setOrientation(LinearLayout.HORIZONTAL);
+        addView(mTabContainerLayout, lp);
     }
 
     public void setupViewPager(@NonNull ViewPager viewPager) {
         if (mTabContainerLayout == null) {
-            mTabContainerLayout = new LinearLayout(getContext());
-            ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-            addView(mTabContainerLayout, lp);
+            addTabContainerLayout();
         } else {
             removeAllTabs();
         }
@@ -103,7 +143,7 @@ public class CustomTabLayout2 extends FrameLayout {
         this.mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                scoll(position, positionOffset);
+                scroll(position, positionOffset);
             }
 
             @Override
@@ -113,7 +153,6 @@ public class CustomTabLayout2 extends FrameLayout {
 
             @Override
             public void onPageScrollStateChanged(int state) {
-
             }
         });
 
@@ -121,12 +160,13 @@ public class CustomTabLayout2 extends FrameLayout {
             final int adapterCount = mPagerAdapter.getCount();
             for (int i = 0; i < adapterCount; i++) {
                 CharSequence pageTitle = mPagerAdapter.getPageTitle(i);
-                TextView textView = getTabView();
+                TextView textView = genTabView();
                 textView.setText(String.valueOf(pageTitle));
                 setNormalStyle(textView);
-                this.mTabs.add(new Tab(textView, false));
-                textView.measure(0, 0);
-                mTabContainerLayout.addView(textView);
+                Tab tab = new Tab(i, textView, false);
+                this.mTabs.add(tab);
+                tab.rootView.setOnClickListener(mOnTabClickListener);
+                mTabContainerLayout.addView(tab.rootView);
             }
             if (adapterCount > 0) {
                 final int curItem = mViewPager.getCurrentItem();
@@ -137,11 +177,108 @@ public class CustomTabLayout2 extends FrameLayout {
         }
     }
 
+
+    public void addUnreadDot(int index) {
+        this.addUnreadDot(index, null);
+    }
+
+    public void addUnreadDot(int index, String count) {
+        this.addUnreadDot(index, mRedDotBgResId, count);
+    }
+
+    /**
+     * 有数字的未读角标
+     */
+    public void addUnreadDot(int index, int dotBgResId, String count) {
+        addUnreadDot(index, genRedDotTextView(dotBgResId), count);
+    }
+
+    public void addUnreadDot(int index, TextView dotTextView, String count) {
+        if (count == null || index < 0 || index > mTabs.size()) {
+            return;
+        }
+        Tab tab = mTabs.get(index);
+        dotTextView.setText(count);
+        RedDot redDot = new RedDot(dotTextView, count);
+        tab.addRedDot(redDot);
+    }
+
+    private final int px_14dp = DisplayUtil.dip2px(getContext(), 14);
+    private final int px_3dp = DisplayUtil.dip2px(getContext(), 3);
+
+    public TextView genRedDotTextView(int dotBgResId) {
+        TextView textView = new TextView(getContext());
+        MarginLayoutParams lp = new MarginLayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, px_14dp);
+        lp.leftMargin = mRedDotMarginLeft;
+        lp.topMargin = mRedDotMarginTop;
+        lp.rightMargin = mRedDotMarginRight;
+        lp.bottomMargin = mRedDotMarginBottom;
+        textView.setPadding(px_3dp, 0, px_3dp, 0);
+        textView.setLayoutParams(lp);
+        textView.setTextSize(10);
+        textView.setGravity(Gravity.CENTER);
+        if (dotBgResId > 0) {
+            textView.setBackgroundResource(dotBgResId);
+        }
+        textView.setMinWidth(px_14dp);
+        textView.setTextColor(getResources().getColor(android.R.color.white));
+        return textView;
+    }
+
+    /**
+     * 只是一个小点
+     */
+    public void addSmallDot(int index) {
+        TextView textView = new TextView(getContext());
+        final int size = DisplayUtil.dip2px(getContext(), 10);
+        MarginLayoutParams lp = new MarginLayoutParams(size, size);
+        lp.leftMargin = mRedDotMarginLeft;
+        lp.topMargin = mRedDotMarginTop;
+        lp.rightMargin = mRedDotMarginRight;
+        lp.bottomMargin = mRedDotMarginBottom;
+        textView.setLayoutParams(lp);
+        textView.setTextSize(10);
+        if (mSmallRedDotBgResId > 0) {
+            textView.setBackgroundResource(mSmallRedDotBgResId);
+        }
+        addSmallDot(index, textView);
+    }
+
+    public void addSmallDot(int index, TextView dotTextView) {
+        if (index < 0 || index > mTabs.size()) {
+            return;
+        }
+        Tab tab = mTabs.get(index);
+        RedDot redDot = new RedDot(dotTextView, "");
+        tab.addRedDot(redDot);
+    }
+
+    public void setUnreadCount(int index, String count) {
+        if (count == null || index < 0 || index > mTabs.size()) {
+            return;
+        }
+        Tab tab = mTabs.get(index);
+        if (tab.redDot != null && tab.redDot.vDot != null) {
+            tab.redDot.vDot.setText(count);
+            tab.redDot.vDot.setVisibility(VISIBLE);
+        }
+    }
+
+    public void dismissRedDot(int index) {
+        if (index < 0 || index > mTabs.size()) {
+            return;
+        }
+        Tab tab = mTabs.get(index);
+        if (tab.redDot != null && tab.redDot.vDot != null) {
+            tab.redDot.vDot.setVisibility(GONE);
+        }
+    }
+
     private boolean isImgIndicator() {
         return mIndicatorResId > 0;
     }
 
-    public void addIndicator() {
+    private void addIndicator() {
         if (!isImgIndicator()) {      //画下划线
             if (mIndicatorPaint == null) {
                 mIndicatorPaint = new Paint();
@@ -159,38 +296,32 @@ public class CustomTabLayout2 extends FrameLayout {
         }
     }
 
-    private int getTabWidth(int index) {
-        if (index < 0 || index + 1 >= mIndicatorLeft.size()) {
-            return -1;
+    private int getIndicatorWidth(int index) {
+        if (isImgIndicator()) {
+            return mIndicatorWidth;
         }
-        return mIndicatorLeft.get(index + 1) - mIndicatorLeft.get(index);
+        if (mIndicatorWidth < 0) {
+            return index >= 0 && index < mIndicatorWidthList.size() ? mIndicatorWidthList.get(index) : 0;
+        }
+        return mIndicatorWidth;
     }
 
     private int indicatorTop;
-    private int currLeftIndex;
     private int lineLength;
 
     private void drawLineIndicator(Canvas canvas) {
-        if (selectedPosition >= 0 && selectedPosition < mIndicatorLeft.size() - 1) {
-            if (lineLength < 0) {
-                lineLength = getTabWidth(currLeftIndex);
-            }
-            int indicatorLeft = mIndicatorLeft.get(selectedPosition) + mTranslationX;
-            canvas.save();
-            canvas.translate(indicatorLeft, indicatorTop + mIndicatorStrokeWidth / 2);
-            canvas.drawLine(0, 0, lineLength, 0, mIndicatorPaint);
-            canvas.restore();
-        }
+        canvas.save();
+        canvas.translate(mTranslationX + mIndicatorPadding, indicatorTop + mIndicatorStrokeWidth / 2);
+        canvas.drawLine(0, 0, lineLength, 0, mIndicatorPaint);
+        canvas.restore();
     }
 
     private void drawImgIndicator(Canvas canvas) {
-        if (selectedPosition >= 0 && selectedPosition < mIndicatorLeft.size() - 1) {
-            int indicatorLeft = mIndicatorLeft.get(selectedPosition) + mTranslationX;
-            canvas.save();
-            canvas.translate(indicatorLeft, indicatorTop);
-            canvas.drawBitmap(mIndicatorBitmap, 0, 0, mIndicatorPaint);
-            canvas.restore();
-        }
+        canvas.save();
+        canvas.translate(mTranslationX, indicatorTop);
+        canvas.drawBitmap(mIndicatorBitmap, 0, 0, mIndicatorPaint);
+        Log.d(TAG, "drawImgIndicator: " + mTranslationX);
+        canvas.restore();
     }
 
     @Override
@@ -204,11 +335,12 @@ public class CustomTabLayout2 extends FrameLayout {
     }
 
 
-    public TextView getTabView() {
+    private TextView genTabView() {
         TextView tab = new TextView(getContext());
         if (mTextSize > 0) {
             tab.setTextSize(mTextSize);
         }
+        tab.setSingleLine();
         tab.setGravity(Gravity.CENTER);
         ViewGroup.MarginLayoutParams marginLayoutParams =
                 new LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
@@ -221,7 +353,7 @@ public class CustomTabLayout2 extends FrameLayout {
         if (mTabContainerLayout != null) {
             mTabContainerLayout.removeAllViews();
         }
-        mIndicatorLeft.clear();
+        mIndicatorLeftList.clear();
         mTabs.clear();
     }
 
@@ -271,21 +403,23 @@ public class CustomTabLayout2 extends FrameLayout {
     }
 
     private void calcIndicatorLeft() {
-        mIndicatorLeft.clear();
+        mIndicatorLeftList.clear();
+        mIndicatorWidthList.clear();
         int tabCount = mTabContainerLayout.getChildCount();
         int tabLayoutWidth = mTabContainerLayout.getMeasuredWidth();
         int totalLeft = 0;
-        for (int i = 0; i < tabCount && totalLeft < tabLayoutWidth; i++) {
+        for (int i = 0; i < tabCount; i++) {//&& totalLeft < tabLayoutWidth
             View view = mTabContainerLayout.getChildAt(i);
             int tabWidth = view.getMeasuredWidth();
             if (mIndicatorWidth < 0) {
-                mIndicatorLeft.add(totalLeft);
+                mIndicatorLeftList.add(totalLeft);
+                mIndicatorWidthList.add(tabWidth - mIndicatorPadding * 2);
             } else {
-                mIndicatorLeft.add(totalLeft + (tabWidth - mIndicatorWidth) / 2);
+                mIndicatorLeftList.add(totalLeft + (tabWidth - mIndicatorWidth) / 2);
             }
             totalLeft += tabWidth;
         }
-        mIndicatorLeft.add(totalLeft);
+        mIndicatorLeftList.add(totalLeft);
     }
 
     @Override
@@ -299,30 +433,31 @@ public class CustomTabLayout2 extends FrameLayout {
         calcIndicatorLeft();
     }
 
+    private int lastPosition = -1;
+    private float lastPositionOffset = -1;
 
-    /**
-     * 当屏幕滑动时调用,移动三角形指示器和标签组
-     *
-     * @param position       当前激活标签的索引,从0开始
-     * @param positionOffset 当前页面滑动距离相对页面宽度的百分比
-     */
-    public void scoll(int position, float positionOffset) {
-        Log.d("ljx", "scoll: " + positionOffset + ", " + position);
-
-        if (positionOffset > selectedPosition) {        //手指向左滑动
-            position = position - 1;
-            if (!isImgIndicator()) {
-                lineLength =
-            }
-        }
-        if (position < 0 || position >= mIndicatorLeft.size()) {
+    private void scroll(int position, float positionOffset) {
+        if (position < 0 || position >= mIndicatorLeftList.size() - 1 ||
+                (lastPositionOffset == positionOffset && lastPosition == position)) {
             return;
         }
-        int lastLeft = position == 0 ? 0 : mIndicatorLeft.get(position - 1);
-        int currTabWidth = mIndicatorLeft.get(position) - lastLeft;
-        mTranslationX = (int) (positionOffset * currTabWidth);
+        lastPosition = position;
+        lastPositionOffset = positionOffset;
+        int currTabWidth = getIndicatorWidth(position);
+        int nextTabWidth = getIndicatorWidth(position + 1);
+        int currTabLeft = mIndicatorLeftList.get(position);
+        int nextTabLeft = mIndicatorLeftList.get(position + 1);
+        if (!isImgIndicator()) {
+            lineLength = (int) (currTabWidth + (nextTabWidth - currTabWidth) * positionOffset);
+        }
+        mTranslationX = (int) (currTabLeft + (nextTabLeft - currTabLeft) * positionOffset);
 
         invalidate();
+    }
+
+    private boolean shouldViewScroll(int indicatorLeft, int indicatorLength) {
+        int rootWidth = getWidth();
+        if (indicatorLeft)
     }
 
     @Override
@@ -331,22 +466,89 @@ public class CustomTabLayout2 extends FrameLayout {
     }
 
     private class Tab {
-        TextView textView;
-        boolean isSelected;
+        private int index;
+        private FrameLayout rootView;
+        private TextView textView;
+        private RedDot redDot;
+        private boolean isSelected;
 
-        public Tab(TextView textView, boolean isSelected) {
+        public Tab(int index, TextView textView, boolean isSelected) {
+            this(index, textView, null, isSelected);
+        }
+
+        public Tab(int index, @NonNull TextView textView, @Nullable RedDot redDot, boolean isSelected) {
+            this.index = index;
             this.textView = textView;
             this.isSelected = isSelected;
+            this.redDot = redDot;
+
+            this.rootView = new FrameLayout(getContext());
+            this.rootView.setLayoutParams(new ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ViewGroup.LayoutParams lp = ensureLayoutParam(this.textView);
+            this.rootView.addView(this.textView, lp);
+            this.rootView.setTag(this.index);
+            addRedDotView(this.redDot);
         }
+
+        private FrameLayout.LayoutParams setRedDotGravity(View redDotView, int gravity) {
+            ViewGroup.LayoutParams lp = ensureLayoutParam(redDotView);
+            FrameLayout.LayoutParams flp;
+            if (lp instanceof FrameLayout.LayoutParams) {
+                flp = (LayoutParams) lp;
+            } else {
+                flp = new FrameLayout.LayoutParams(lp);
+                if (lp instanceof MarginLayoutParams) {
+                    flp.leftMargin = ((MarginLayoutParams) lp).leftMargin;
+                    flp.topMargin = ((MarginLayoutParams) lp).topMargin;
+                    flp.rightMargin = ((MarginLayoutParams) lp).rightMargin;
+                    flp.bottomMargin = ((MarginLayoutParams) lp).bottomMargin;
+                }
+            }
+            flp.gravity = gravity;
+            return flp;
+        }
+
+        private ViewGroup.LayoutParams ensureLayoutParam(View view) {
+            ViewGroup.LayoutParams lp = view.getLayoutParams();
+            if (lp == null) {
+                lp = new ViewGroup.LayoutParams(
+                        ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            }
+            return lp;
+        }
+
+        public void addRedDot(RedDot redDot) {
+            if (this.redDot != null) {
+                this.redDot.vDot.setText(redDot.num);
+                this.redDot.vDot.setLayoutParams(setRedDotGravity(this.redDot.vDot, redDot.gravity));
+            } else {
+                this.redDot = redDot;
+                addRedDotView(redDot);
+            }
+        }
+
+        private void addRedDotView(RedDot redDot) {
+            if (redDot != null) {
+                rootView.addView(redDot.vDot, setRedDotGravity(redDot.vDot, redDot.gravity));
+            }
+        }
+
     }
 
     private class RedDot {
-        View vDot;
-        int num;
+        TextView vDot;
+        String num;
+        int gravity;
 
-        public RedDot(View vDot, int num) {
+        public RedDot(TextView vDot, String num) {
+            this(vDot, num, Gravity.END | Gravity.TOP);
+        }
+
+        public RedDot(TextView vDot, String num, int gravity) {
             this.vDot = vDot;
             this.num = num;
+            this.gravity = gravity;
         }
     }
 

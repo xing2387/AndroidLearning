@@ -75,5 +75,14 @@
         <attr name="tabTextSize" format="dimension" />
         <attr name="tabPadding" format="dimension" />
         <attr name="boldSelected" format="boolean" />
+        <attr name="indicatorPadding" format="dimension" />
+        <attr name="redDotBgResId" format="reference" />
+        <attr name="smallDotBgResId" format="reference" />
+        <attr name="redDotGravity" format="integer" />
+        <attr name="redDotMarginTop" format="dimension" />
+        <attr name="redDotMarginLeft" format="dimension" />
+        <attr name="redDotMarginRight" format="dimension" />
+        <attr name="redDotMarginBottom" format="dimension" />
+        <attr name="scrollThreshold" format="dimension" />  <!-- 指示器距离tablayout左右边距小于多少时tablayout开始滑动 -->
     </declare-styleable>
 </resources>

@@ -10,7 +10,12 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/blue_light"
-        app:indicatorImg="@drawable/title_tab_indicator" />
+        app:indicatorPadding="18dp"
+        app:redDotBgResId="@drawable/round_rect_red_10"
+        app:redDotMarginRight="2dp"
+        app:redDotMarginTop="2dp"
+        app:smallDotBgResId="@drawable/round_rect_red_10" />
+    <!--app:indicatorImg="@drawable/title_tab_indicator"-->
 
     <View
         android:layout_width="match_parent"

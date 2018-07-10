@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CustomTabLayoutActivity extends AppCompatActivity {
 
-    private List<String> mPageTitle = Arrays.asList("Tab1", "Tab2", "Tab3", "Tab4", "Tab5", "Tab6", "Tab7", "Tab8", "Tab9");
+    private List<String> mPageTitle = Arrays.asList("Tabadsf1", "Tab232", "Tab3", "Ta4b4", "Tab511", "Tab3336", "T4ab7", "Tab52348", "Tab9");
     private ArrayList<Fragment> mFragments = new ArrayList<>();
 
 
@@ -48,6 +48,10 @@ public class CustomTabLayoutActivity extends AppCompatActivity {
 
         ViewPager viewPager = ((ViewPager) findViewById(R.id.viewpager));
         viewPager.setAdapter(adapter);
-        ((CustomTabLayout2) findViewById(R.id.tablayout)).setupViewPager(viewPager);
+        CustomTabLayout2 customTabLayout2 = ((CustomTabLayout2) findViewById(R.id.tablayout));
+        customTabLayout2.setupViewPager(viewPager);
+        customTabLayout2.addUnreadDot(0, "99+");
+        customTabLayout2.addSmallDot(2);
+        customTabLayout2.dismissRedDot(2);
     }
 }
