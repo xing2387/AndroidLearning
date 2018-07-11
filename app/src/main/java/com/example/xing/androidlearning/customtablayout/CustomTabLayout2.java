@@ -52,6 +52,7 @@ public class CustomTabLayout2 extends HorizontalScrollView {
     private int mRedDotMarginBottom = 0;
     private int mRedDotMarginRight = DisplayUtil.dip2px(getContext(), 9);                       //px
     private int mRedDotMarginLeft = 0;
+    private int mScrollThreshold = DisplayUtil.dip2px(getContext(), 100);
 
     private Paint mIndicatorPaint;
     private ViewPager mViewPager;
@@ -297,11 +298,8 @@ public class CustomTabLayout2 extends HorizontalScrollView {
     }
 
     private int getIndicatorWidth(int index) {
-        if (isImgIndicator()) {
-            return mIndicatorWidth;
-        }
-        if (mIndicatorWidth < 0) {
-            return index >= 0 && index < mIndicatorWidthList.size() ? mIndicatorWidthList.get(index) : 0;
+        if (index >= 0 && index < mIndicatorWidthList.size()) {
+            return mIndicatorWidthList.get(index);
         }
         return mIndicatorWidth;
     }
@@ -451,13 +449,21 @@ public class CustomTabLayout2 extends HorizontalScrollView {
             lineLength = (int) (currTabWidth + (nextTabWidth - currTabWidth) * positionOffset);
         }
         mTranslationX = (int) (currTabLeft + (nextTabLeft - currTabLeft) * positionOffset);
-
+        scrollView(mTranslationX, lineLength);
         invalidate();
     }
 
-    private boolean shouldViewScroll(int indicatorLeft, int indicatorLength) {
+    private boolean scrollView(int indicatorLeft, int indicatorLength) {
         int rootWidth = getWidth();
-        if (indicatorLeft)
+        int leftInView = indicatorLeft - getScrollX();
+        int dist = 0;
+        if (leftInView < mScrollThreshold) {
+            dist = -(mScrollThreshold - leftInView);
+        } else if (leftInView + indicatorLength > rootWidth - mScrollThreshold) {
+            dist = (leftInView + indicatorLength - rootWidth + mScrollThreshold);
+        }
+        scrollBy(dist, 0);
+        return dist != 0;
     }
 
     @Override
