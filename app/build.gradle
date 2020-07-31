@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.2'
+    compileSdkVersion 29
+    buildToolsVersion '29.0.3'
 
     defaultConfig {
         applicationId "com.example.xing.androidlearning"
-        minSdkVersion 14
-        targetSdkVersion 26
+        minSdkVersion 21
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         multiDexEnabled true
@@ -29,28 +29,22 @@ android {
 }
 //
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //    compile 'com.afollestad:material-dialogs:0.7.6.0'
-
-
-    compile 'com.android.support:design:24.1.0'
-    compile 'com.android.support:appcompat-v7:24.1.0'
-    compile 'com.android.support:recyclerview-v7:24.1.0'
-    compile 'com.android.support:support-v4:24.1.0'
-    compile 'com.android.support:cardview-v7:24.1.0'
-
-    compile 'com.github.bumptech.glide:glide:3.6.0'
-    compile 'de.hdodenhof:circleimageview:1.3.0'
-    compile 'com.loopj.android:android-async-http:1.4.7'
-    compile 'com.belerweb:pinyin4j:2.5.1'
-    compile 'com.google.android.gms:play-services-plus:9.2.1'
-    compile 'com.google.android.gms:play-services-auth:9.2.1'
-
-    compile 'com.mcxiaoke.volley:library:1.0.19'
-    compile 'com.squareup.okhttp3:okhttp:3.1.2'
-    compile 'com.squareup.okio:okio:1.6.0'
-    compile 'com.google.code.gson:gson:2.6.1'
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.google.android.material:material:1.1.0'
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.loopj.android:android-async-http:1.4.7'
+    implementation 'com.belerweb:pinyin4j:2.5.1'
+    implementation 'com.google.android.gms:play-services-plus:17.0.0'
+    implementation 'com.google.android.gms:play-services-auth:18.1.0'
+    implementation 'com.mcxiaoke.volley:library:1.0.19'
+    implementation 'com.squareup.okhttp3:okhttp:4.7.2'
+    implementation 'com.squareup.okio:okio:2.6.0'
+    implementation 'com.google.code.gson:gson:2.8.6'
     testCompile 'junit:junit:4.12'
 }
 

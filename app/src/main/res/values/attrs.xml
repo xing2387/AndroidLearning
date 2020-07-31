@@ -65,7 +65,7 @@
         </attr>
     </declare-styleable>
 
-    <declare-styleable name="CustomTabLayout2">
+    <declare-styleable name="CustomTabLayout">
         <attr name="indicatorColor" format="color" />
         <attr name="indicatorWidth" format="dimension" />
         <attr name="indicatorStrokeWidth" format="dimension" />

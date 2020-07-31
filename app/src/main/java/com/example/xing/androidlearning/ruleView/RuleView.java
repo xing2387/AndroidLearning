@@ -6,19 +6,21 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
-import android.support.v4.view.TintableBackgroundView;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.MotionEvent;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+import androidx.core.view.TintableBackgroundView;
 
 import com.example.xing.androidlearning.R;
 import com.example.xing.androidlearning.util.CommomUtil;
 
 import java.util.Locale;
 
-public class RuleView extends android.support.v7.widget.AppCompatImageView {
+public class RuleView extends AppCompatImageView {
 
     private Context mContext;
     private String[] mScaleTexts;

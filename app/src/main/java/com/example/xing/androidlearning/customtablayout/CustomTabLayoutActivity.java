@@ -1,11 +1,12 @@
 package com.example.xing.androidlearning.customtablayout;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentPagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.xing.androidlearning.R;
 import com.example.xing.androidlearning.pageviewindicator.VpSimpleFragment;
@@ -48,7 +49,7 @@ public class CustomTabLayoutActivity extends AppCompatActivity {
 
         ViewPager viewPager = ((ViewPager) findViewById(R.id.viewpager));
         viewPager.setAdapter(adapter);
-        CustomTabLayout2 customTabLayout2 = ((CustomTabLayout2) findViewById(R.id.tablayout));
+        CustomTabLayout customTabLayout2 = ((CustomTabLayout) findViewById(R.id.tablayout));
         customTabLayout2.setupViewPager(viewPager);
         customTabLayout2.addUnreadDot(0, "99+");
         customTabLayout2.addSmallDot(2);

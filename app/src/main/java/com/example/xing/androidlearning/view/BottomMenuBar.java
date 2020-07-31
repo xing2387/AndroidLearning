@@ -1,14 +1,12 @@
 package com.example.xing.androidlearning.view;
 
 import android.content.Context;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by james on 2016/7/8.

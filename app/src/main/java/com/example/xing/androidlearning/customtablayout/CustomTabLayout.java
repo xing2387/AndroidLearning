@@ -8,12 +8,6 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.AttrRes;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -24,12 +18,19 @@ import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.AttrRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
+
 import com.example.xing.androidlearning.R;
 import com.example.xing.androidlearning.util.DisplayUtil;
 
 import java.util.ArrayList;
 
-public class CustomTabLayout2 extends HorizontalScrollView {
+public class CustomTabLayout extends HorizontalScrollView {
     private static final String TAG = "CustomTabLayout2";
 
     private float mTextSize = 17;   //sp
@@ -80,36 +81,36 @@ public class CustomTabLayout2 extends HorizontalScrollView {
         }
     };
 
-    public CustomTabLayout2(Context context) {
+    public CustomTabLayout(Context context) {
         this(context, null);
     }
 
-    public CustomTabLayout2(Context context, @Nullable AttributeSet attrs) {
+    public CustomTabLayout(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CustomTabLayout2(@NonNull Context context, @Nullable AttributeSet attrs,
-                            @AttrRes int defStyleAttr) {
+    public CustomTabLayout(@NonNull Context context, @Nullable AttributeSet attrs,
+                           @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs,
-                R.styleable.CustomTabLayout2, defStyleAttr, 0);
-        mTextSize = typedArray.getDimension(R.styleable.CustomTabLayout2_tabTextSize, mTextSize);
-        mTabPadding = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_tabPadding, mTabPadding);
-        mIndicatorColor = typedArray.getColor(R.styleable.CustomTabLayout2_indicatorColor, mIndicatorColor);
-        mIndicatorResId = typedArray.getResourceId(R.styleable.CustomTabLayout2_indicatorImg, mIndicatorResId);
-        mIsBoldText = typedArray.getBoolean(R.styleable.CustomTabLayout2_boldSelected, mIsBoldText);
-        mNormalTextColor = typedArray.getColor(R.styleable.CustomTabLayout2_tabTextColor, mNormalTextColor);
-        mSelectedTextColor = typedArray.getColor(R.styleable.CustomTabLayout2_selectTextColor, mSelectedTextColor);
-        mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorWidth, mIndicatorWidth);
-        mIndicatorStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorStrokeWidth, mIndicatorStrokeWidth);
-        mIndicatorPadding = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_indicatorPadding, mIndicatorPadding);
-        mRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout2_redDotBgResId, mRedDotBgResId);
-        mSmallRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout2_smallDotBgResId, mSmallRedDotBgResId);
-        mRedDotMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginLeft, mRedDotMarginLeft);
-        mRedDotMarginTop = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginTop, mRedDotMarginTop);
-        mRedDotMarginRight = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginRight, mRedDotMarginRight);
-        mRedDotMarginBottom = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout2_redDotMarginBottom, mRedDotMarginBottom);
-        mRedDotGravity = typedArray.getInteger(R.styleable.CustomTabLayout2_redDotGravity, mRedDotGravity);
+                R.styleable.CustomTabLayout, defStyleAttr, 0);
+        mTextSize = typedArray.getDimension(R.styleable.CustomTabLayout_tabTextSize, mTextSize);
+        mTabPadding = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_tabPadding, mTabPadding);
+        mIndicatorColor = typedArray.getColor(R.styleable.CustomTabLayout_indicatorColor, mIndicatorColor);
+        mIndicatorResId = typedArray.getResourceId(R.styleable.CustomTabLayout_indicatorImg, mIndicatorResId);
+        mIsBoldText = typedArray.getBoolean(R.styleable.CustomTabLayout_boldSelected, mIsBoldText);
+        mNormalTextColor = typedArray.getColor(R.styleable.CustomTabLayout_tabTextColor, mNormalTextColor);
+        mSelectedTextColor = typedArray.getColor(R.styleable.CustomTabLayout_selectTextColor, mSelectedTextColor);
+        mIndicatorWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_indicatorWidth, mIndicatorWidth);
+        mIndicatorStrokeWidth = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_indicatorStrokeWidth, mIndicatorStrokeWidth);
+        mIndicatorPadding = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_indicatorPadding, mIndicatorPadding);
+        mRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout_redDotBgResId, mRedDotBgResId);
+        mSmallRedDotBgResId = typedArray.getResourceId(R.styleable.CustomTabLayout_smallDotBgResId, mSmallRedDotBgResId);
+        mRedDotMarginLeft = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_redDotMarginLeft, mRedDotMarginLeft);
+        mRedDotMarginTop = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_redDotMarginTop, mRedDotMarginTop);
+        mRedDotMarginRight = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_redDotMarginRight, mRedDotMarginRight);
+        mRedDotMarginBottom = typedArray.getDimensionPixelSize(R.styleable.CustomTabLayout_redDotMarginBottom, mRedDotMarginBottom);
+        mRedDotGravity = typedArray.getInteger(R.styleable.CustomTabLayout_redDotGravity, mRedDotGravity);
         typedArray.recycle();
 
     }

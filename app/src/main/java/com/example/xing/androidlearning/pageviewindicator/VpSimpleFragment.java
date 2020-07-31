@@ -1,21 +1,15 @@
 package com.example.xing.androidlearning.pageviewindicator;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.fragment.app.Fragment;
+
 //* {@link VpSimpleFragment.OnFragmentInteractionListener} interface
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * to handle interaction events.
- * Use the {@link VpSimpleFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class VpSimpleFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
