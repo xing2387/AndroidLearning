@@ -19,15 +19,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    buildTypes {
-//        release {
-//            runProguard true
-//            proguardFile 'proguard-google-api-client.txt'
-//            proguardFile getDefaultProguardFile('proguard-android.txt')
-//        }
-//    }
+    dexOptions {
+        preDexLibraries = false
+    }
 }
-//
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.google.android.material:material:1.1.0'
@@ -45,6 +40,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.7.2'
     implementation 'com.squareup.okio:okio:2.6.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    testCompile 'junit:junit:4.12'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
 

@@ -25,6 +25,7 @@ import com.example.xing.androidlearning.flowlayout.FlowLayoutActivity;
 import com.example.xing.androidlearning.loginsignup.LoginAndSignUpActivity;
 import com.example.xing.androidlearning.pageviewindicator.PageViewIndicatorActivity;
 import com.example.xing.androidlearning.ruleView.RuleViewActivity;
+import com.example.xing.androidlearning.rv.ScalableRecyclerViewActivity;
 
 import org.json.JSONObject;
 
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
         ListView lvMenu = (ListView) findViewById(R.id.main_lv_menu);
         List<String> menuList = Arrays.asList("Login&SignUp", "TriangleIndicator",
-                "FlowLayout", "Contacts", "ruleView", "CustomTabLayout");
+                "FlowLayout", "Contacts", "ruleView", "CustomTabLayout", "带动画的切换LayoutManager");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, menuList);
         if (lvMenu != null) {
             lvMenu.setAdapter(adapter);
@@ -111,6 +112,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
                 break;
             case 5:
                 startActivity(new Intent(this, CustomTabLayoutActivity.class));
+            case 6:
+                startActivity(new Intent(this, ScalableRecyclerViewActivity.class));
             default:
                 break;
         }

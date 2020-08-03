@@ -9,108 +9,116 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center_horizontal"
-            android:textSize="18sp"
-            android:text="@string/signup_btn_signup_text"/>
+            android:text="@string/signup_btn_signup_text"
+            android:textSize="18sp" />
+
         <ImageView
+            android:id="@+id/btn_signup_close"
             android:layout_width="18dp"
             android:layout_height="18dp"
             android:layout_gravity="start"
-            android:src="@drawable/ic_close"
-            android:id="@+id/btn_signup_close" />
+            android:src="@drawable/ic_close" />
     </FrameLayout>
 
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_gravity="center_horizontal">
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp">
 
         <com.example.xing.androidlearning.view.RoundImageView
             android:layout_width="90dp"
             android:layout_height="90dp"
-            android:src="@drawable/photo"
             android:layout_gravity="center_horizontal"
+            android:src="@drawable/photo"
             app:border_inside_color="#FFFFFF"
             app:border_outside_color="#FFFFFF"
-            app:border_thickness="1dp"
-            />
+            app:border_thickness="1dp" />
 
-        <android.support.design.widget.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="29dp"
             android:layout_height="29dp"
-            app:fabSize="mini"
             android:layout_gravity="end|top"
             android:src="@drawable/ic_plus"
             app:backgroundTint="#50d2c2"
             app:elevation="0dp"
-            app:pressedTranslationZ="1dp"
-            />
+            app:fabSize="mini"
+            app:pressedTranslationZ="1dp" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="303dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="45dp"
-        android:layout_gravity="center_horizontal">
+        android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:text="@string/signup_tv_fullname"/>
+            android:text="@string/signup_tv_fullname"
+            android:textSize="12sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="12sp"
-            android:text="@string/signup_tv_email"/>
+            android:text="@string/signup_tv_email"
+            android:textSize="12sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="12sp"
-            android:text="@string/login_password"/>
+            android:text="@string/login_password"
+            android:textSize="12sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:textSize="18sp"
-            android:inputType="textPassword"/>
+            android:inputType="textPassword"
+            android:textSize="18sp" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
-            android:textSize="12sp"
-            android:text="@string/signup_tv_birthday"/>
+            android:text="@string/signup_tv_birthday"
+            android:textSize="12sp" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="38dp"
-            android:textSize="18sp"
-            android:inputType="date"/>
+            android:inputType="date"
+            android:textSize="18sp" />
+
         <Button
             style="@style/base_color"
-            android:layout_marginTop="30dp"
             android:layout_width="match_parent"
             android:layout_height="53dp"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
             android:background="@drawable/shape_login_btn"
+            android:gravity="center"
             android:text="@string/login_btn_signin_text"
-            android:textSize="18sp"
             android:textColor="#FFFFFF"
-            android:gravity="center" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>
